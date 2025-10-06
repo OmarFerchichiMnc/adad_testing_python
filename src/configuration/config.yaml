@@ -1,0 +1,81 @@
+database_config:
+  host: 127.0.0.1
+  port: 4445
+  user: sftp_user_8X_staging
+  password: 3c1NIT0xj0VxMIs5
+
+local_folder: /home/Omar.Ferchichi/Desktop/adad_testing_python/
+
+test_files:
+  sale: //
+  refund: //
+  settlement: //
+  refund_debit: //
+  payment_order: //
+  bank_deposit: //
+  sale_settlement_molecule :
+    correct:
+      sale_file: Sale_GLOBAL_10.csv
+      sale_file_path: adad_testing/docs/test_files/sale_settlement_molecule/correct/
+      sale_file_name: Sale_GLOBAL_10.csv
+      payment_date_range: 01/01/2025 - 31/01/2025
+      settlement_file: Settlement_GLOBAL_10.csv
+      settlement_file_path: adad_testing/docs/test_files/sale_settlement_molecule/correct/
+      settlement_file_name: Settlement_GLOBAL_10.csv
+      settlement_date_range: 01/03/2025 - 31/03/2025
+
+    discrepency:
+      sale_file: //
+      settlement_file: //
+    duplicated:
+      sale_file: //
+      settlement_file: //
+    exception:
+      sale_file: //
+      settlement_file: //
+    late:
+      sale_file: //
+      settlement_file: //
+    many_to_mmany:
+      sale_file: //
+      settlement_file: //
+    sealed_molecule:
+      sale_file: //
+      settlement_file_1: //
+      settlement_file_2: //
+
+  payment_order_bank_deposit_molecule :
+    correct:
+      payment_order_file: //
+      bank_deposit_file: //
+    corrupted:
+      payment_order_file: //
+      bank_deposit_file: //
+    partial:
+      payment_order_file: //
+      bank_deposit_file: //
+    pending:
+      payment_order_file: //
+      bank_deposit_file: //
+    discrepency:
+      payment_order_file: //
+      bank_deposit_file: //
+    duplicated:
+      payment_order_file: //
+      bank_deposit_file: //
+    exception:
+      payment_order_file: //
+      bank_deposit_file: //
+    late:
+      payment_order_file: //
+      bank_deposit_file: //
+    many_to_mmany:
+      payment_order_file: //
+      bank_deposit_file: //
+
+adad_paths:
+  sales: /adad/8X/Sale/GLOBAL
+  settlement_global: /adad/8X/Settlement/GLOBAL
+  settlement_standard_global: /adad/8X/Settlement/GLOBAL???????
+
+
