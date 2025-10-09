@@ -68,7 +68,7 @@ class SaleUIFilterChannelType(TestPoint):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
             try :
                 channel_type_input = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div/div/div[2]/adad-frontend-sale-sources-dropdown-filter/div/p-dropdown"))
+        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[2]/adad-frontend-sale-sources-dropdown-filter/div/p-dropdown/div/div[1]"))
     )
                 channel_type_input.click()
                 logging.info("✅ channel type clicked")
@@ -96,7 +96,7 @@ class SaleUIFilterChannelType(TestPoint):
 
         # Assign metadata separately
         tp_id = "TP"
-        tp_description = f"Filter payment date range in sales within sale page"
+        tp_description = f"Filter Channel Type in sales within sale page"
         tkt_id= f"*****"
         tp_status=f"ready"
 
@@ -136,7 +136,7 @@ class SaleUIFilterSaleID(TestPoint):
             try:
                 # Wait until input is visible and interactable
                 sale_id_input = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/div/div[1]/div[1]/input"))
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[1]/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[2]/div/input"))
                 )
                 
                 # Clear any existing text before typing

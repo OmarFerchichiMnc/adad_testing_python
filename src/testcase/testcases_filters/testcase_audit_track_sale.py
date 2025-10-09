@@ -9,23 +9,18 @@ from src.ui.audit_track.sale_ui import SaleUIAddFilters, SaleUIClickSearch, Sale
 from src.ui.data_ingestion.file_dashboard_ui import CheckIfFileIngested, FileDashboardUIFilterClickSearch, FileDashboardUIFilterFileID
 
 
-list_date = ["08/09/2025 - 09/09/2025","08/08/2025 - 09/08/2025","08/10/2025 - 09/10/2025"]
+
 
 class PendingSalesFilters(TestCase):
-    def __init__(self , list_date):
+    def __init__(self , date , channel_type, sale_id):
         super().__init__(id="Upload_sales_files", description="Upload sales files and check if the ingestion done correctly", ticket_id="TKT001")
 
-        # Define all test points inside this test case
-        # Ingestion of sale file
-        self.add_testpoint(InjectFile(sale_and_settlement_molecule_correct_files.sale_path_for_molecule,adad_paths.sales,sale_and_settlement_molecule_correct_files.sale_file_name))      
-        self.add_testpoint(TestPointNavigateToFileDashboard())
-        self.add_testpoint(FileDashboardUIFilterClickSearch())
-        self.add_testpoint(CheckIfFileIngested(sale_and_settlement_molecule_correct_files.sale_file_name))
+
 
         #navigate to audit track sale
         self.add_testpoint(TestPointNavigateToAuditTrackSale())
 
-        self.add_testpoint(SaleUIFilterPaymentDateRange(list_date))
-        #self.add_testpoint(SaleUIFilterChannelType())
-        #self.add_testpoint(SaleUIFilterSaleID())
+        self.add_testpoint(SaleUIFilterPaymentDateRange(date))
+        self.add_testpoint(SaleUIFilterChannelType(channel_type))
+        self.add_testpoint(SaleUIFilterSaleID(sale_id))
         self.add_testpoint(SaleUIClickSearch())

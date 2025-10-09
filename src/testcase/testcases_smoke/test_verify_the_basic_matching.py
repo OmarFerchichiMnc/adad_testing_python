@@ -7,7 +7,6 @@ from src.testcase.testcase_main import TestCase
 from src.ui.business_rules.reconciliation.settlement_reconciliation_settings_ui import TriggerNow
 from src.ui.data_ingestion.file_dashboard_ui import CheckIfFileIngested, FileDashboardUIFilterClickSearch, FileDashboardUIFilterFileID
 
-
 class VerifyTheBasicMatching(TestCase):
     def __init__(self):
         super().__init__(id="verify_the_basic_matching", description="Upload sales and settlements files and check if the basic matching done correctly", ticket_id="TKT001")
@@ -24,9 +23,6 @@ class VerifyTheBasicMatching(TestCase):
         self.add_testpoint(FileDashboardUIFilterClickSearch())
         self.add_testpoint(CheckIfFileIngested(sale_and_settlement_molecule_correct_files.settlement_file_name))
 
-
-
         # Trigger basic matching
         self.add_testpoint(TestPointNavigateToManualMatching())
         self.add_testpoint(TriggerNow())
-     
