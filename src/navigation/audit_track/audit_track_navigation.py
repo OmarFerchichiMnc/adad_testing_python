@@ -14,15 +14,14 @@ class TestPointNavigateToAuditTrackSale(TestPoint):
         def func(driver = webdriver):
             
             time.sleep(5)
-            audit_track = driver.find_element(By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-sidebar/div/ul/li[5]/adad-frontend-sidebar-item/a/span")
+            audit_track = driver.find_element(By.XPATH, "//span[text()='Audit Track']/parent::a")
 
             if "active-menuitem" in audit_track.get_attribute("class"):
                 logging.info("Successfully clicked the audit track icon ")
             else:
-                click_icon = driver.find_element(By.XPATH ,"/html/body/app-root/adad-frontend-layout/div/adad-frontend-sidebar/div/ul/li[5]/adad-frontend-sidebar-item/a/span")
+                click_icon = driver.find_element(By.CSS_SELECTOR ,"i.ng-tns-c35-117:nth-child(3)")
                 click_icon.click()
                 logging.info("Successfully clicked the audit track icon ")
-            
             
             time.sleep(2)
             sidebar_item = driver.find_element(By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-sidebar/div/ul/li[5]/adad-frontend-sidebar-item/ul/li[1]/adad-frontend-sidebar-item/a")
