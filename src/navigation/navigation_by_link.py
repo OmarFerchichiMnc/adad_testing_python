@@ -220,7 +220,7 @@ class TestPointNavigateToAuditTrackSaleByLink(TestPoint):
 
             except WebDriverException as e:
                 logging.info(f"❌ Failed to open the link. Error: {e}")
-
+            time.sleep(3)
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
             logging.info("-------Successfully Navigated to audit track sale page------")
         # Assign metadata separately
