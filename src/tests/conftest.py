@@ -6,6 +6,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from src.configuration.utils.utils import database_config
 from src.testpoint.testpoint_main import TestPoint
 
 
@@ -221,6 +222,74 @@ def driver():
 
 
     driver.quit()
+
+
+
+
+
+import os
+import subprocess
+import time
+import pytest
+import psycopg2
+from selenium import webdriver
+
+# --- Constants ---
+BASTION_TAG = "adad-ec2-bastion"
+REGION = "eu-west-3"
+LOCAL_PORT = "5555"
+REMOTE_PORT = "5432"
+REMOTE_HOST = "rds.staging.adad.internal"
+
+# -------------------------------------------------------------------------
+def get_bastion_instance_id():
+    """Retrieve Bastion instance ID."""
+    logging.info("🔍 Looking for Bastion instance...")
+    os.environ["AWS_PROFILE"] = "default"
+
+    try:
+        bastion_id = subprocess.check_output([
+            "aws", "ec2", "describe-instances",
+            "--filters", f"Name=tag:Name,Values={BASTION_TAG}",
+            "--query", "Reservations[].Instances[?State.Name=='running'].InstanceId",
+            "--output", "text",
+            "--region", REGION
+        ], text=True).strip()
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"❌ AWS CLI error: {e}")
+
+    if not bastion_id:
+        raise RuntimeError("❌ No running Bastion instance found!")
+
+    logging.info(f"🛰️ Bastion instance found: {bastion_id}")
+    return bastion_id
+
+
+# -------------------------------------------------------------------------
+@pytest.fixture(scope="session", autouse=True)
+def start_ssm_tunnel():
+    """Start AWS SSM port forwarding session (autouse)."""
+    bastion_id = get_bastion_instance_id()
+    logging.info("🔗 Starting AWS SSM port forwarding session...")
+
+    process = subprocess.Popen([
+        "aws", "ssm", "start-session",
+        "--target", bastion_id,
+        "--region", REGION,
+        "--document-name", "AWS-StartPortForwardingSessionToRemoteHost",
+        "--parameters",
+        f'{{"portNumber":["{REMOTE_PORT}"],"localPortNumber":["{LOCAL_PORT}"],"host":["{REMOTE_HOST}"]}}'
+    ])
+
+    logging.info("⏳ Waiting for tunnel to initialize...")
+    time.sleep(5)
+    logging.info("✅ SSM tunnel started.")
+
+    yield
+    logging.info("🧹 Closing SSM tunnel...")
+    process.terminate()
+    process.wait(timeout=5)
+    logging.info("✅ Tunnel closed.")
 
 
 

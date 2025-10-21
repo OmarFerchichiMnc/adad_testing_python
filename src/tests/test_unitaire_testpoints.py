@@ -13,6 +13,7 @@ from src.navigation.cash_forecast.cash_forecast_navigation import TestPointNavig
 from src.navigation.dashboard.dashboard_navigation import TestPointNavigateDashboard
 from src.navigation.data_ingestion.data_ingestion_navigation import TestPointNavigateToFailedTransactions, TestPointNavigateToFileDashboard
 from src.navigation.master_data.master_data_navigation import TestPointNavigateToMasterDataAcquirers, TestPointNavigateToMasterDataAcquirersMerchants, TestPointNavigateToMasterDataFormOfPayments, TestPointNavigateToMasterDataFxRateSources, TestPointNavigateToMasterDataPointOfSales, TestPointNavigateToMasterDataPointOfSalesMerchantMapping, TestPointNavigateToMasterDataRateOfExchange, TestPointNavigateToMasterDataSaleSources
+from src.navigation.navigation_by_link import TestPointNavigateDashboardByLink, TestPointNavigateSetllmentsDisputesByLink, TestPointNavigateToAccountingJournalByLink, TestPointNavigateToAlertManagementByLink, TestPointNavigateToAuditTrackSaleByLink, TestPointNavigateToAuditTrackSettlementByLink, TestPointNavigateToBusinesssRulesAccountingAccountingPeriodsByLink, TestPointNavigateToBusinesssRulesAccountingAccountingRulesByLink, TestPointNavigateToBusinesssRulesAccountingChartsOfAccountsByLink, TestPointNavigateToBusinesssRulesAccountingSettingsByLink, TestPointNavigateToBusinesssRulesAlertTypeAffiliationByLink, TestPointNavigateToBusinesssRulesDataIngestionSettingsByLink, TestPointNavigateToBusinesssRulesGeneralSettingsByLink, TestPointNavigateToBusinesssRulesMerchantFeeRulesByLink, TestPointNavigateToBusinesssRulesReconciliationBankReconciliationSettingsByLink, TestPointNavigateToBusinesssRulesReconciliationMachingRulesBankReconciliationByLink, TestPointNavigateToBusinesssRulesReconciliationMachingRulesSettlementReconciliationByLink, TestPointNavigateToBusinesssRulesReconciliationSettlementReconciliationSettingsByLink, TestPointNavigateToCashForecastByLink, TestPointNavigateToExceptionsByLink, TestPointNavigateToFailedTransactionsByLink, TestPointNavigateToFileDashboardByLink, TestPointNavigateToImbalancedJournalEntriesByLink, TestPointNavigateToInstallmentsByLink, TestPointNavigateToManualMatchingByLink, TestPointNavigateToMasterDataAcquirersByLink, TestPointNavigateToMasterDataAcquirersMerchantsByLink, TestPointNavigateToMasterDataFormOfPaymentsByLink, TestPointNavigateToMasterDataFxRateSourcesByLink, TestPointNavigateToMasterDataPointOfSalesByLink, TestPointNavigateToMasterDataPointOfSalesMerchantMappingByLink, TestPointNavigateToMasterDataRateOfExchangeByLink, TestPointNavigateToMasterDataSaleSourcesByLink, TestPointNavigateToMatchedItemsMatchedByLink, TestPointNavigateToPendingItemsByLink, TestPointNavigateToPostToLedgerByLink, TestPointNavigateToProvisionalMismatchedItemsByLink, TestPointNavigateToReconciliationAlertsByLink, TestPointNavigateToTrialBalanceByLink, TestPointNavigateToUnaccountedEventsByLink
 from src.navigation.reconciliation.reconciliation_navigation import TestPointNavigateToExceptions, TestPointNavigateToInstallments, TestPointNavigateToMatchedItemsMatched, TestPointNavigateToManualMatching, TestPointNavigateToPendingItems, TestPointNavigateToProvisionalMismatchedItems
 from src.navigation.settlements_disputes.settlements_disputes_navigation import TestPointNavigateSetllmentsDisputes
 from src.testpoint.testpoint_main import TestPoint
@@ -150,7 +151,7 @@ def test_navigate_to_dashboard_play(driver):
     TestPointNavigateToFileDashboard().run(driver)
     FileDashboardUIFilterFileID("01K422W3NT8ENSR2DFZETRYVJF").run(driver)
     FileDashboardUIFilterClickSearch().run(driver)
-    CheckIfFileIngested().run(driver)
+    CheckIfFileIngested('wherever').run(driver)
 
 def test_manual_matching(driver):
     TestPointNavigateToManualMatching().run(driver)
@@ -206,3 +207,45 @@ def test_payment_filters(driver) :
     SettlementUIPaymentOrderClickSearch().func(driver)
     SettlementUIPaymentOrderCheckIfFileFound().func(driver)
     
+
+def test_navigation_by_link(driver):
+    TestPointNavigateToAccountingJournalByLink().func(driver)
+    TestPointNavigateToUnaccountedEventsByLink().func(driver)
+    TestPointNavigateToImbalancedJournalEntriesByLink().func(driver)
+    TestPointNavigateToTrialBalanceByLink().func(driver)
+    TestPointNavigateToPostToLedgerByLink().func(driver)
+    TestPointNavigateToAlertManagementByLink().func(driver)
+    TestPointNavigateToReconciliationAlertsByLink().func(driver)
+    TestPointNavigateToAuditTrackSaleByLink().func(driver)
+    TestPointNavigateToAuditTrackSettlementByLink().func(driver)
+    TestPointNavigateToBusinesssRulesAlertTypeAffiliationByLink().func(driver)
+    TestPointNavigateToBusinesssRulesDataIngestionSettingsByLink().func(driver)
+    TestPointNavigateToBusinesssRulesReconciliationMachingRulesSettlementReconciliationByLink().func(driver)
+    TestPointNavigateToBusinesssRulesReconciliationMachingRulesBankReconciliationByLink().func(driver)
+    TestPointNavigateToBusinesssRulesReconciliationSettlementReconciliationSettingsByLink().func(driver)
+    TestPointNavigateToBusinesssRulesReconciliationBankReconciliationSettingsByLink().func(driver)
+    TestPointNavigateToBusinesssRulesAccountingAccountingRulesByLink().func(driver)
+    TestPointNavigateToBusinesssRulesAccountingAccountingPeriodsByLink().func(driver)
+    TestPointNavigateToBusinesssRulesAccountingChartsOfAccountsByLink().func(driver)
+    TestPointNavigateToBusinesssRulesAccountingSettingsByLink().func(driver)
+    TestPointNavigateToBusinesssRulesGeneralSettingsByLink().func(driver)
+    TestPointNavigateToBusinesssRulesMerchantFeeRulesByLink().func(driver)
+    TestPointNavigateToCashForecastByLink().func(driver)
+    TestPointNavigateDashboardByLink().func(driver)
+    TestPointNavigateToFileDashboardByLink().func(driver)
+    TestPointNavigateToFailedTransactionsByLink().func(driver)
+    TestPointNavigateToMasterDataRateOfExchangeByLink().func(driver)
+    TestPointNavigateToMasterDataFxRateSourcesByLink().func(driver)
+    TestPointNavigateToMasterDataFormOfPaymentsByLink().func(driver)
+    TestPointNavigateToMasterDataPointOfSalesByLink().func(driver)
+    TestPointNavigateToMasterDataPointOfSalesMerchantMappingByLink().func(driver)
+    TestPointNavigateToMasterDataAcquirersByLink().func(driver)
+    TestPointNavigateToMasterDataAcquirersMerchantsByLink().func(driver)
+    TestPointNavigateToMasterDataSaleSourcesByLink().func(driver)
+    TestPointNavigateToPendingItemsByLink().func(driver)
+    TestPointNavigateToProvisionalMismatchedItemsByLink().func(driver)
+    TestPointNavigateToInstallmentsByLink().func(driver)
+    TestPointNavigateToMatchedItemsMatchedByLink().func(driver)
+    TestPointNavigateToExceptionsByLink().func(driver)
+    TestPointNavigateToManualMatchingByLink().func(driver)
+    TestPointNavigateSetllmentsDisputesByLink().func(driver)
