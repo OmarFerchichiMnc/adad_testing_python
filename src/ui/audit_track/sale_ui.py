@@ -1,3 +1,4 @@
+import pytest
 from src.testpoint.testpoint_main import TestPoint
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -13,22 +14,31 @@ from selenium.common.exceptions import NoSuchElementException
 
 class SaleUIFilterPaymentDateRange(TestPoint):
     def __init__(self, date ):   
-        def func(driver = webdriver):
+        def func(driver):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
-            date_input = WebDriverWait(driver, 10).until(
-    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div/div/div[1]/adad-frontend-date-range/div/div/p-calendar/span/input"))
-)
-            date_input.click()
-            logging.info("✅ Date input clicked")
+            try : 
+                date_input = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[1]/adad-frontend-date-range/div/div/p-calendar/span/input"))
+    )
+                date_input.click()
+                logging.info("✅ Date input clicked")
+            except Exception  as e :
+                pytest.fail("❌ Button not clicked")
+                logging.error(e)
 
             time.sleep(2)
 
+            try : 
             # Wait for clear button and click it
-            clear_btn = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, "/html/body/div/div[2]/button[2]"))
-            )
-            clear_btn.click()
-            logging.info("✅ Clear button clicked")
+                clear_btn = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/div/div[2]/button[2]"))
+                )
+                clear_btn.click()
+                logging.info("✅ Clear button clicked")
+            except Exception as e :
+                pytest.fail("❌ Button not clicked")
+                logging.error(e)
+                
 
             # Check if clear_btn is active
             if clear_btn == driver.switch_to.active_element:
@@ -40,7 +50,7 @@ class SaleUIFilterPaymentDateRange(TestPoint):
 
             # Re-locate the date input after clearing
             date_input = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div/div/div[1]/adad-frontend-date-range/div/div/p-calendar/span/input"))
+                EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[1]/adad-frontend-date-range/div/div/p-calendar/span/input"))
             )
 
             # Send date
@@ -132,7 +142,6 @@ class SaleUIFilterSaleID(TestPoint):
         def func(driver = webdriver):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
             time.sleep(1)
-            SaleUIAddFilters().run(driver)
             try:
                 # Wait until input is visible and interactable
                 sale_id_input = WebDriverWait(driver, 10).until(
@@ -158,6 +167,72 @@ class SaleUIFilterSaleID(TestPoint):
 
         # Pass metadata and function to base class
         super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+
+class SaleUIFilterSelectDocumentNumberToFilter(TestPoint):
+    def __init__(self ):   
+        def func(driver = webdriver):
+            assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
+            time.sleep(1)
+           
+            try:
+                # Wait until input is visible and interactable
+                document_number_icon_ckeck_click = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[1]/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[1]/div[2]/p-radiobutton/div/div[2]"))
+                )
+                
+                # Clear any existing text before typing
+                document_number_icon_ckeck_click.click()
+               
+                logging.info(f"✅ document number icon check clicked")
+                
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to click document number icon")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f"click document number icon"
+        tkt_id= f"*****"
+        tp_status=f"ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+class SaleUIFilterDocumentNumber(TestPoint):
+    def __init__(self, sale_id ):   
+        def func(driver ):
+            assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
+            time.sleep(1)
+            SaleUIFilterSelectDocumentNumberToFilter().run(driver)
+            try:
+                # Wait until input is visible and interactable
+                sale_id_input = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[1]/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[2]/div/input"))
+                )
+                
+                # Clear any existing text before typing
+                sale_id_input.clear()
+                sale_id_input.send_keys(sale_id)
+                logging.info(f"✅ Sale ID '{sale_id}' entered successfully")
+                
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to enter PNR")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f""
+        tkt_id= f"*****"
+        tp_status=f"not ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
 
 
 class SaleUIClickSearch(TestPoint):
@@ -215,6 +290,30 @@ class SaleUICheckIfFileFound(TestPoint):
 
 
 
+class SaleUIClickSearchQuickFilter(TestPoint):
+    def __init__(self ):   
+        def func(driver = webdriver):
+            assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
+            try :
+                time.sleep(1)
+                filters = driver.find_element(By.CSS_SELECTOR, ".p-button-primary > span:nth-child(1)").click()
+                time.sleep(1)
+                logging.info("✅Successfully clicked the search button")
+
+            except Exception as e :
+                logging.exception("❌ Failed to click search button")
+                raise AssertionError(e)         
+            
+            time.sleep(2)
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f""
+        tkt_id= f"*****"
+        tp_status=f"not ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
 
 
 
