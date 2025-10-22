@@ -5,8 +5,8 @@ import time
 import pytest
 import psycopg2
 from src.testcase.testcases_filters.audit_track_sale_filter.testcase_audit_track_document_number_filter import AuditTrackSalesDocumentNumberFilters
-from src.testcase.testcases_filters.audit_track_sale_filter.testcase_audit_track_sale_id_filter import AuditTrackSalesSaleIDFilters
-from src.testcase.testcases_filters.testcase_check_sales import checkPendingSalesFilters
+
+
 
 
 # -------------------------------------------------------------------------
