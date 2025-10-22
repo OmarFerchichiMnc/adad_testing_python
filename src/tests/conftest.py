@@ -236,7 +236,7 @@ from selenium import webdriver
 
 # --- Constants ---
 BASTION_TAG = "adad-ec2-bastion"
-REGION = "eu-west-3"
+REGION = "eu-west-1"
 LOCAL_PORT = "5555"
 REMOTE_PORT = "5432"
 REMOTE_HOST = "rds.staging.adad.internal"

@@ -39,7 +39,7 @@ class BastionSSMForward(TestPoint):
                             "--region", "eu-west-1",
                             "--document-name", "AWS-StartPortForwardingSessionToRemoteHost",
                             "--parameters",
-                            '{"portNumber":["2022"],"localPortNumber":["2022"],"host":["15.236.129.45"]}',
+                            '{"portNumber":["2022"],"localPortNumber":["2022"],"host":["10.10.2.175"]}',
                             "--profile", "default"
                         ], check=True)
                     except subprocess.CalledProcessError as e:
