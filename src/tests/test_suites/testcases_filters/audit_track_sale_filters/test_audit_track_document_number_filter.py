@@ -1,18 +1,25 @@
 import logging
-import os
-import subprocess
-import time
+
 import pytest
 import psycopg2
 from src.testcase.testcases_filters.audit_track_sale_filter.testcase_audit_track_document_number_filter import AuditTrackSalesDocumentNumberFilters
+import psycopg2
+import signal
 
 
 
 
 # -------------------------------------------------------------------------
-def fetch_document_numbers():
-    """Fetch sale IDs from the database."""
+def fetch_document_numbers(timeout_seconds=5):
+    """Fetch sale IDs from the database with a time limit."""
     print("📡 Connecting to DB to fetch sale IDs...")
+
+    def timeout_handler(signum, frame):
+        raise TimeoutError("⏰ Database operation timed out")
+
+    # Set an alarm to limit total function execution time
+    signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(timeout_seconds)
 
     try:
         conn = psycopg2.connect(
@@ -20,8 +27,11 @@ def fetch_document_numbers():
             database="adad",
             user="staging_dbuser8x",
             password="Ad@d8X!St0dU$eR2024",
-            port=5555
+            port=5555,
+            connect_timeout=3  # connection-level timeout
         )
+        conn.set_session(readonly=True, autocommit=True)
+
         cur = conn.cursor()
         cur.execute('SELECT id FROM "8X".sale ORDER BY id ASC LIMIT 10;')
         document_numbers = [row[5] for row in cur.fetchall()]
@@ -34,9 +44,15 @@ def fetch_document_numbers():
             print(f"✅ Found sale IDs: {document_numbers}")
         return document_numbers
 
+    except TimeoutError as te:
+        print(f"⏰ Operation timed out after {timeout_seconds}s: {te}")
+        return []
     except Exception as e:
         print(f"❌ Error fetching sale IDs: {e}")
         return []
+    finally:
+        # Cancel alarm to avoid affecting next operations
+        signal.alarm(0)
 
 
 # -------------------------------------------------------------------------
