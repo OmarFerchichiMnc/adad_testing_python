@@ -74,35 +74,44 @@ class SaleUIFilterPaymentDateRange(TestPoint):
 
 class SaleUIFilterChannelType(TestPoint):
     def __init__(self, channel_type ):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
             try :
                 channel_type_input = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[2]/adad-frontend-sale-sources-dropdown-filter/div/p-dropdown/div/div[1]"))
+        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[2]/adad-frontend-sale-sources-dropdown-filter/div/p-dropdown/div/span"))
     )
                 channel_type_input.click()
                 logging.info("✅ channel type clicked")
 
                 time.sleep(2)
+            except Exception as e: 
+                logging.exception("❌ Failed to click select channel type")
+                pytest.fail("❌ Failed to click select channel type")
 
-                # Wait for clear button and click it
-                
+                raise AssertionError(e)
+            # Wait for clear button and click it
+            
+            try:
                 option = WebDriverWait(driver, 10).until(
                         EC.element_to_be_clickable((By.XPATH, f"//li[@role='option'][normalize-space()='{channel_type}']"))
                     )
                 option.click()
                 logging.info(f"✅ Option '{channel_type}' selected")
+            except Exception as e: 
+                logging.exception("❌ channel type doesn't exist")
+                pytest.fail("❌ channel type doesn't exist")
+
+            try :
 
                 selected_label = WebDriverWait(driver, 10).until(
                         EC.visibility_of_element_located((By.CSS_SELECTOR, "p-dropdown.p-element"))
                     )
                 logging.info(f"🎯 Dropdown now shows: '{selected_label.text}'")
 
-
-                time.sleep(2)
-            except Exception as e: 
-                logging.exception("❌ Failed to select channel type")
-                raise AssertionError(e)
+            except Exception as e :
+                logging.error(e)
+            time.sleep(2)
+           
 
         # Assign metadata separately
         tp_id = "TP"
@@ -139,7 +148,7 @@ class SaleUIAddFilters(TestPoint):
 
 class SaleUIFilterSaleID(TestPoint):
     def __init__(self, sale_id ):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
             time.sleep(1)
             try:
@@ -171,7 +180,7 @@ class SaleUIFilterSaleID(TestPoint):
 
 class SaleUIFilterSelectDocumentNumberToFilter(TestPoint):
     def __init__(self ):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
             time.sleep(1)
            
