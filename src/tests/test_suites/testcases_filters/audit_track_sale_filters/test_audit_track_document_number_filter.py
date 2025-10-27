@@ -12,7 +12,7 @@ import signal
 # -------------------------------------------------------------------------
 def fetch_document_numbers(timeout_seconds=5):
     """Fetch sale IDs from the database with a time limit."""
-    print("📡 Connecting to DB to fetch sale IDs...")
+    logging.info("📡 Connecting to DB to fetch sale IDs...")
 
     def timeout_handler(signum, frame):
         raise TimeoutError("⏰ Database operation timed out")
@@ -33,22 +33,22 @@ def fetch_document_numbers(timeout_seconds=5):
         conn.set_session(readonly=True, autocommit=True)
 
         cur = conn.cursor()
-        cur.execute('SELECT id FROM "8X".sale ORDER BY id ASC LIMIT 10;')
-        document_numbers = [row[5] for row in cur.fetchall()]
+        cur.execute('SELECT document_number FROM "8X".sale ORDER BY id ASC LIMIT 10;')
+        document_numbers = [row[0] for row in cur.fetchall()]
         cur.close()
         conn.close()
 
         if not document_numbers:
-            print("⚠️ No sale IDs returned from DB.")
+            logging.info("⚠️ No sale IDs returned from DB.")
         else:
-            print(f"✅ Found sale IDs: {document_numbers}")
+            logging.info(f"✅ Found sale IDs: {document_numbers}")
         return document_numbers
 
     except TimeoutError as te:
-        print(f"⏰ Operation timed out after {timeout_seconds}s: {te}")
+        logging.error(f"⏰ Operation timed out after {timeout_seconds}s: {te}")
         return []
     except Exception as e:
-        print(f"❌ Error fetching sale IDs: {e}")
+        logging.error(f"❌ Error fetching sale IDs: {e}")
         return []
     finally:
         # Cancel alarm to avoid affecting next operations
