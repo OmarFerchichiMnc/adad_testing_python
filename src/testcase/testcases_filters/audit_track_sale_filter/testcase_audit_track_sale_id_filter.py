@@ -5,7 +5,7 @@ from src.ui.audit_track.sale_ui import SaleUICheckIfSaleTableNotEmpty, SaleUICli
 
 class AuditTrackSalesSaleIDFilters(TestCase):
     def __init__(self , sale_id):
-        super().__init__(id="Testcase_Audit_Track_Sale_ID_Filter", description="Extract document number from database and filter it and check if exists", ticket_id="TKT001")
+        super().__init__(id="Testcase_Audit_Track_Sale_ID_Filter", description="Extract sale id from database and filter it and check if exists", ticket_id="TKT001")
 
         #navigate to audit track sale
         self.add_testpoint(TestPointNavigateToAuditTrackSaleByLink())
