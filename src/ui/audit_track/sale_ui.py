@@ -177,7 +177,6 @@ class SaleUIFilterSaleID(TestPoint):
         # Pass metadata and function to base class
         super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
 
-
 class SaleUIFilterSelectDocumentNumberToFilter(TestPoint):
     def __init__(self ):   
         def func(driver ):
@@ -250,7 +249,7 @@ class SaleUIClickSearch(TestPoint):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
             try :
                 time.sleep(1)
-                filters = driver.find_element(By.CSS_SELECTOR, "div.col-12:nth-child(6) > div:nth-child(2) > button:nth-child(1)").click()
+                filters = driver.find_element(By.CSS_SELECTOR, ".p-button-primary > span:nth-child(1)").click()
                 time.sleep(1)
                 logging.info("✅Successfully clicked the search button")
 
@@ -324,6 +323,48 @@ class SaleUIClickSearchQuickFilter(TestPoint):
         # Pass metadata and function to base class
         super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
 
+class SaleUICheckIfSaleTableNotEmpty(TestPoint):  
+
+    def __init__(self ):  
+        def func(driver ):
+            assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
+            tbody = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.CSS_SELECTOR, "tbody.p-datatable-tbody"))
+)
+            rows = driver.find_elements(By.CSS_SELECTOR, "tbody.p-datatable-tbody tr")
+            logging.info(f"🧩 Found {len(rows)} rows in Sales Audit Track table")
+            if not rows:
+                logging.error("❌ No rows found in the table at all")
+                raise AssertionError("❌ No rows found in the table")
+
+            else:
+                check = False
+                for idx, row in enumerate(rows):
+                    row_text = row.text.strip()
+                    cells = row_text.split('\n')
+                    logging.info(f"🔹 Row {idx+1}: {cells}")
+
+                    # Ensure there are enough columns before accessing index 2
+                    if len(cells) > 2 :
+                        check = True
+                        logging.info(f"✅ File found in row {idx+1}")
+                        break
+                if not check:
+                    
+                    raise AssertionError(f"❌ File not found in table")
+
+            
+
+            logging.info("✅ Table verification completed successfully")
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f"Check if file matching done correctly"
+        tkt_id= f"*****"
+        tp_status=f"not ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
 
 
 
