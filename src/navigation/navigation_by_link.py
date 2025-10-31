@@ -28,6 +28,7 @@ class TestPointNavigateToAccountingJournalByLink(TestPoint):
             assert "/accounting-journal" in driver.current_url, "❌ Not on accounting journal page"
             execution_status = "passed"
             logging.info("-------Successfully Navigated to accounting journal page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0015"
         tp_description = f"Navigate to accounting journal page"
@@ -57,6 +58,7 @@ class TestPointNavigateToUnaccountedEventsByLink(TestPoint):
             assert "/unaccounted-events" in driver.current_url, "❌ Not on unaccounting events page"
             
             logging.info("-------Successfully Navigated to unaccounting events page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0016"
         tp_description = f"Navigate to unaccounting events page"
@@ -85,6 +87,7 @@ class TestPointNavigateToImbalancedJournalEntriesByLink(TestPoint):
             assert "/imbalanced-items" in driver.current_url, "❌ Not on Imbalanced Journal Entries page"
             execution_status = "passed"
             logging.info("-------Successfully Navigated to Imbalanced Journal Entries page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0017"
         tp_description = f"Navigate to Imbalanced Journal Entries page"
@@ -113,6 +116,7 @@ class TestPointNavigateToTrialBalanceByLink(TestPoint):
             assert "/trial-balance" in driver.current_url, "❌ Not on trial balance page"
             execution_status = "passed"
             logging.info("-------Successfully Navigated to trial balance page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0018"
         tp_description = f"Navigate to trial balance page"
@@ -141,6 +145,7 @@ class TestPointNavigateToPostToLedgerByLink(TestPoint):
             assert "/post-to-ledger" in driver.current_url, "❌ Not on post to ledger page"
             execution_status = "passed"
             logging.info("-------Successfully Navigated to post to ledger page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0019"
         tp_description = f"Navigate to post to ledger page"
@@ -169,6 +174,7 @@ class TestPointNavigateToAlertManagementByLink(TestPoint):
 
             assert "/alerts" in driver.current_url, "❌ Not on alerts management page"
             logging.info("-------Successfully Navigated to alerts management page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0002"
         tp_description = f"Navigate to Alert management page"
@@ -196,6 +202,7 @@ class TestPointNavigateToReconciliationAlertsByLink(TestPoint):
 
             assert "/reconciliation-alerts" in driver.current_url, "❌ Not on reconciliation alerts page"
             logging.info("-------Successfully Navigated to areconciliation alerts page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0003"
         tp_description = f"Navigate to Reconciliation Alert page"
@@ -223,6 +230,7 @@ class TestPointNavigateToAuditTrackSaleByLink(TestPoint):
             time.sleep(3)
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
             logging.info("-------Successfully Navigated to audit track sale page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0006"
         tp_description = f"Navigate to audit track sale page"
@@ -251,6 +259,7 @@ class TestPointNavigateToAuditTrackSettlementByLink(TestPoint):
             assert "/audit-track/settlement" in driver.current_url, "❌ Not on audit track settlement page"
             logging.info("-------Successfully Navigated to audit track settlement page------")
 
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0007"
         tp_description = f"Navigate to audit track settlement page"
@@ -279,6 +288,7 @@ class TestPointNavigateToBusinesssRulesAlertTypeAffiliationByLink(TestPoint):
 
             assert "/alert-type-affiliation" in driver.current_url, "❌ Not on Alert Type Afiliation page"
             logging.info("-------Successfully Navigated to Alert Type Afiliation page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0020"
         tp_description = f"Navigate to Alert Type Afiliation page"
@@ -306,6 +316,7 @@ class TestPointNavigateToBusinesssRulesDataIngestionSettingsByLink(TestPoint):
 
             assert "/settings" in driver.current_url, "❌ Not on Data Ingestion Settingsn page"
             logging.info("-------Successfully Navigated to Data Ingestion Settings page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0021"
         tp_description = f"Navigate to Data Ingestion Settings page"
@@ -333,6 +344,7 @@ class TestPointNavigateToBusinesssRulesReconciliationMachingRulesSettlementRecon
 
             assert "/matching-rules/settlement-reconciliation" in driver.current_url, "❌ Not on settlement reconciliation matching page"
             logging.info("-------Successfully Navigated to settlement reconciliation matching page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0022"
         tp_description = f"Navigate to settlement reconciliation matching page"
@@ -360,6 +372,7 @@ class TestPointNavigateToBusinesssRulesReconciliationMachingRulesBankReconciliat
 
             assert "/matching-rules/bank-reconciliation" in driver.current_url, "❌ Not on bank reconciliation matching page"
             logging.info("-------Successfully Navigated to bank reconciliation matching page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0023"
         tp_description = f"Navigate to bank reconciliation matching page"
@@ -387,6 +400,7 @@ class TestPointNavigateToBusinesssRulesReconciliationSettlementReconciliationSet
 
             assert "/settlement-reconciliation-settings" in driver.current_url, "❌ Not on settlement reconciliation settings page"
             logging.info("-------Successfully Navigated to settlement reconciliation settingsg page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0024"
         tp_description = f"Navigate to settlement reconciliation settings page"
@@ -414,6 +428,7 @@ class TestPointNavigateToBusinesssRulesReconciliationBankReconciliationSettingsB
 
             assert "/bank-reconciliation-settings" in driver.current_url, "❌ Not on bank reconciliation settings page"
             logging.info("-------Successfully Navigated to bank reconciliation settingsg page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0025"
         tp_description = f"Navigate to bank reconciliation settings page"
@@ -441,6 +456,7 @@ class TestPointNavigateToBusinesssRulesAccountingAccountingRulesByLink(TestPoint
 
             assert "/accounting-rules" in driver.current_url, "❌ Not on bank reconciliation settings page"
             logging.info("-------Successfully Navigated to accounting rules page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0026"
         tp_description = f"Navigate to accounting rules page"
@@ -467,6 +483,7 @@ class TestPointNavigateToBusinesssRulesAccountingAccountingPeriodsByLink(TestPoi
 
             assert "/accounting-periods" in driver.current_url, "❌ Not on accounting periods page"
             logging.info("-------Successfully Navigated to accounting periods page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0027"
         tp_description = f"Navigate to accounting periods page"
@@ -494,6 +511,7 @@ class TestPointNavigateToBusinesssRulesAccountingChartsOfAccountsByLink(TestPoin
 
             assert "/chart-accounts" in driver.current_url, "❌ Not on charts of accounts page"
             logging.info("-------Successfully Navigated to charts of accounts page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0028"
         tp_description = f"Navigate to charts of accounts page"
@@ -521,6 +539,7 @@ class TestPointNavigateToBusinesssRulesAccountingSettingsByLink(TestPoint):
 
             assert "/accounting-settings" in driver.current_url, "❌ Not on accounting settings page"
             logging.info("-------Successfully Navigated to accounting settings page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0029"
         tp_description = f"Navigate to accounting settings page"
@@ -548,6 +567,7 @@ class TestPointNavigateToBusinesssRulesGeneralSettingsByLink(TestPoint):
 
             assert "/general-settings" in driver.current_url, "❌ Not on accounting settings page"
             logging.info("-------Successfully Navigated to general settings page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0030"
         tp_description = f"Navigate to general settings page"
@@ -575,6 +595,7 @@ class TestPointNavigateToBusinesssRulesMerchantFeeRulesByLink(TestPoint):
 
             assert "/fee-rules" in driver.current_url, "❌ Not on merchant fee rules page"
             logging.info("-------Successfully Navigated to merchant fee rules page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0031"
         tp_description = f"Navigate to merchant fee rules page"
@@ -602,6 +623,7 @@ class TestPointNavigateToCashForecastByLink(TestPoint):
 
             assert "/cash-forecast" in driver.current_url, "❌ Not on cash forecast page"
             logging.info("-------Successfully Navigated to cash forecast page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP001"
         tp_description = f"Navigate to cash forecast page"
@@ -628,6 +650,7 @@ class TestPointNavigateDashboardByLink(TestPoint):
                 logging.info(f"❌ Failed to open the link. Error: {e}")
             
 
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP000"
         tp_description = f"Navigate to Dashboard page"
@@ -655,6 +678,7 @@ class TestPointNavigateToFileDashboardByLink(TestPoint):
 
             assert "/etl-files" in driver.current_url, "❌ Not on File Dashboard page"
             logging.info("-------Successfully Navigated to File Dashboard page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0004"
         tp_description = f"Navigate to File Dashboard page"
@@ -683,6 +707,7 @@ class TestPointNavigateToFailedTransactionsByLink(TestPoint):
             assert "/failed-transactions" in driver.current_url, "❌ Not on Failed Transactions page"            
             logging.info("-------Successfully Navigated to Failed Transactions page------")
 
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0005"
         tp_description = f"Navigate to Failed Transactions page"
@@ -710,6 +735,7 @@ class TestPointNavigateToMasterDataRateOfExchangeByLink(TestPoint):
 
             assert "/roe" in driver.current_url, "❌ Not on rate of exchange page"
             logging.info("-------Successfully Navigated to rate of exchange page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0032"
         tp_description = f"Navigate to rate of exchange page"
@@ -737,6 +763,7 @@ class TestPointNavigateToMasterDataFxRateSourcesByLink(TestPoint):
 
             assert "/fx-rate-sources" in driver.current_url, "❌ Not on fx rate source page"
             logging.info("-------Successfully Navigated to fx rate source page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0033"
         tp_description = f"Navigate to fx rate source page"
@@ -764,6 +791,7 @@ class TestPointNavigateToMasterDataFormOfPaymentsByLink(TestPoint):
 
             assert "/form-of-payments" in driver.current_url, "❌ Not on form of payments page"
             logging.info("-------Successfully Navigated to form of payments page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0034"
         tp_description = f"Navigate to form of payments page"
@@ -791,6 +819,7 @@ class TestPointNavigateToMasterDataPointOfSalesByLink(TestPoint):
 
             assert "/point-of-sales" in driver.current_url, "❌ Not on point of sales page"
             logging.info("-------Successfully Navigated to point of sales page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0035"
         tp_description = f"Navigate to point of sales page"
@@ -818,6 +847,7 @@ class TestPointNavigateToMasterDataPointOfSalesMerchantMappingByLink(TestPoint):
 
             assert "/point-of-sales-merchant-mapping" in driver.current_url, "❌ Not on point of sales merchant mapping page"
             logging.info("-------Successfully Navigated to point of sales merchant mapping page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0036"
         tp_description = f"Navigate to point of sales merchant mapping page"
@@ -845,6 +875,7 @@ class TestPointNavigateToMasterDataAcquirersByLink(TestPoint):
 
             assert "/acquirers" in driver.current_url, "❌ Not on acquirers page"
             logging.info("-------Successfully Navigated to acquirers page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0037"
         tp_description = f"Navigate to acquirers page"
@@ -872,6 +903,7 @@ class TestPointNavigateToMasterDataAcquirersMerchantsByLink(TestPoint):
 
             assert "/acquirer-merchants" in driver.current_url, "❌ Not on acquirers merchants page"
             logging.info("-------Successfully Navigated to acquirers merchants page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0038"
         tp_description = f"Navigate to acquirers merchants page"
@@ -899,6 +931,7 @@ class TestPointNavigateToMasterDataSaleSourcesByLink(TestPoint):
             
             assert "/sale-sources" in driver.current_url, "❌ Not on sale sources page"
             logging.info("-------Successfully Navigated to sale sources page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0039"
         tp_description = f"Navigate to sale sources page"
@@ -926,6 +959,7 @@ class TestPointNavigateToPendingItemsByLink(TestPoint):
 
             assert "/pending-items" in driver.current_url, "❌ Not on pending items page"
             logging.info("-------Successfully Navigated to pending items page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0008"
         tp_description = f"Navigate to pending items page"
@@ -953,6 +987,7 @@ class TestPointNavigateToProvisionalMismatchedItemsByLink(TestPoint):
 
             assert "/pending-items" in driver.current_url, "❌ Not on pending items page"
             logging.info("-------Successfully Navigated to Provisional Mismatched Items page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0009"
         tp_description = f"Navigate to Provisional Mismatched Itemspage"
@@ -980,6 +1015,7 @@ class TestPointNavigateToInstallmentsByLink(TestPoint):
 
             assert "/installments" in driver.current_url, "❌ Not on installments page"
             logging.info("-------Successfully Navigated to installments page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0010"
         tp_description = f"Navigate to installments page"
@@ -1008,6 +1044,7 @@ class TestPointNavigateToMatchedItemsMatchedByLink(TestPoint):
 
             assert "/matched-items" in driver.current_url, "❌ Not on Matched page"
             logging.info("-------Successfully Navigated to Matched page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0011"
         tp_description = f"Navigate to Matched page"
@@ -1035,6 +1072,7 @@ class TestPointNavigateToExceptionsByLink(TestPoint):
 
             assert "matched-items/exceptions" in driver.current_url, "❌ Not on Exceptions page"
             logging.info("-------Successfully Navigated to Exceptions page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0012"
         tp_description = f"Navigate to Exceptions page"
@@ -1062,6 +1100,7 @@ class TestPointNavigateToManualMatchingByLink(TestPoint):
 
             assert "manual-matching" in driver.current_url, "❌ Not on Manual Maching page"
             logging.info("-------Successfully Navigated to Manual Maching page------")
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP0013"
         tp_description = f"Navigate to Manual Maching page"
@@ -1091,6 +1130,7 @@ class TestPointNavigateSetllmentsDisputesByLink(TestPoint):
             logging.info("-------Successfully Navigated to settlement disputes page------")
             
 
+            time.sleep(2)
         # Assign metadata separately
         tp_id = "TP000"
         tp_description = f"Navigate to settlement disputes page"
