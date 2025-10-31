@@ -167,7 +167,7 @@ class ExecuteUpload(TestPoint):
         def func(driver=webdriver):
             logging.info("🚀 Executing file upload via SFTP...")
 
-            host = "localhost"
+            host = "15.236.129.45"
             port = "2022"
             username = "sftp_user_8X_staging"
             password = "3c1NIT0xj0VxMIs5"
