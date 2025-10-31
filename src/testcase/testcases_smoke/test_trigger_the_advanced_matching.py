@@ -1,6 +1,7 @@
 from src.configuration.file_injection.file_injection import InjectFile, WaitForFileInjection
 from src.navigation.business_rules.business_rules_navigation import TestPointNavigateToBusinesssRulesReconciliationSettlementReconciliationSettings
 from src.navigation.data_ingestion.data_ingestion_navigation import TestPointNavigateToFileDashboard
+from src.navigation.navigation_by_link import TestPointNavigateToBusinesssRulesReconciliationSettlementReconciliationSettingsByLink, TestPointNavigateToFileDashboardByLink, TestPointNavigateToMatchedItemsMatchedByLink
 from src.navigation.reconciliation.reconciliation_navigation import TestPointNavigateToMatchedItemsMatched
 from src.testcase.testcase_main import TestCase
 from src.ui.business_rules.reconciliation.settlement_reconciliation_settings_ui import TriggerNow
@@ -20,13 +21,13 @@ class TriggerTheAdvancedMatching(TestCase):
 
         # Ingestion of settlement file
         self.add_testpoint(InjectFile(sale_and_settlement_molecule_correct_files.settlement_path_for_molecule,adad_paths.setllement,sale_and_settlement_molecule_correct_files.settlement_file_name))      
-        self.add_testpoint(TestPointNavigateToFileDashboard())
+        self.add_testpoint(TestPointNavigateToFileDashboardByLink())
         self.add_testpoint(FileDashboardUIFilterClickSearch())
         self.add_testpoint(CheckIfFileIngested(sale_and_settlement_molecule_correct_files.settlement_file_name))
 
 
         # Trigger basic matching
-        self.add_testpoint(TestPointNavigateToBusinesssRulesReconciliationSettlementReconciliationSettings())
+        self.add_testpoint(TestPointNavigateToBusinesssRulesReconciliationSettlementReconciliationSettingsByLink())
         self.add_testpoint(TriggerNow())
-        self.add_testpoint(TestPointNavigateToMatchedItemsMatched())
+        self.add_testpoint(TestPointNavigateToMatchedItemsMatchedByLink())
         self.add_testpoint(SaleUICheckIfMatchingDoneCorrectly('1'))

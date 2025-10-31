@@ -2,6 +2,7 @@ from src.configuration.file_injection.file_injection import InjectFile
 from src.configuration.utils.utils import adad_paths, sale_and_settlement_molecule_correct_files
 from src.navigation.audit_track.audit_track_navigation import TestPointNavigateToAuditTrackSale
 from src.navigation.data_ingestion.data_ingestion_navigation import TestPointNavigateToFileDashboard
+from src.navigation.navigation_by_link import TestPointNavigateToFileDashboardByLink, TestPointNavigateToManualMatchingByLink, TestPointNavigateToMatchedItemsMatchedByLink
 from src.navigation.reconciliation.reconciliation_navigation import TestPointNavigateToManualMatching, TestPointNavigateToMatchedItemsMatched
 from src.testcase.testcase_main import TestCase
 from src.ui.audit_track.sale_ui import SaleUIAddFilters, SaleUIFilterChannelType, SaleUIFilterPaymentDateRange, SaleUIFilterSaleID
@@ -17,19 +18,19 @@ class VerifyTheManualMatching(TestCase):
 
          # Ingestion of sale file
         self.add_testpoint(InjectFile(sale_and_settlement_molecule_correct_files.sale_path_for_molecule,adad_paths.sales,sale_and_settlement_molecule_correct_files.sale_file_name))      
-        self.add_testpoint(TestPointNavigateToFileDashboard())
+        self.add_testpoint(TestPointNavigateToFileDashboardByLink())
         self.add_testpoint(FileDashboardUIFilterClickSearch())
         self.add_testpoint(CheckIfFileIngested(sale_and_settlement_molecule_correct_files.sale_file_name))
 
         # Ingestion of settlement file
         self.add_testpoint(InjectFile(sale_and_settlement_molecule_correct_files.settlement_path_for_molecule,adad_paths.setllement,sale_and_settlement_molecule_correct_files.settlement_file_name))      
-        self.add_testpoint(TestPointNavigateToFileDashboard())
+        self.add_testpoint(TestPointNavigateToFileDashboardByLink())
         self.add_testpoint(FileDashboardUIFilterClickSearch())
         self.add_testpoint(CheckIfFileIngested(sale_and_settlement_molecule_correct_files.settlement_file_name))
 
 
         #Manual matching
-        self.add_testpoint(TestPointNavigateToManualMatching())
+        self.add_testpoint(TestPointNavigateToManualMatchingByLink())
 
         # Search of sale file
         self.add_testpoint(ManualMatchingUISaleFilterPaymentDateRange(sale_and_settlement_molecule_correct_files.payment_date_range))
@@ -51,5 +52,5 @@ class VerifyTheManualMatching(TestCase):
         self.add_testpoint(ManualMatchingUIMatchSaleAndSettlement())
         self.add_testpoint(ManualMatchingUIMatchSaleAndSettlementClickYes())
         
-        self.add_testpoint(TestPointNavigateToMatchedItemsMatched())
+        self.add_testpoint(TestPointNavigateToMatchedItemsMatchedByLink())
         self.add_testpoint(SaleUICheckIfMatchingDoneCorrectly('1'))
