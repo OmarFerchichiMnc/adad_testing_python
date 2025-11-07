@@ -207,7 +207,7 @@ def driver():
     time.sleep(2)
 
     # Enter password
-    driver.find_element(By.CSS_SELECTOR, "#i0118").send_keys("M&C Adad 2025")  
+    driver.find_element(By.CSS_SELECTOR, "#i0118").send_keys("M&C Adad 2025+")  
     time.sleep(2)
     driver.find_element(By.CSS_SELECTOR, "#idSIButton9").click()
     time.sleep(2)
