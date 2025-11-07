@@ -15,7 +15,7 @@ class TriggerTheAdvancedMatching(TestCase):
 
         # Ingestion of sale file
         self.add_testpoint(InjectFile(sale_and_settlement_molecule_correct_files.sale_path_for_molecule,adad_paths.sales,sale_and_settlement_molecule_correct_files.sale_file_name))      
-        self.add_testpoint(TestPointNavigateToFileDashboard())
+        self.add_testpoint(TestPointNavigateToFileDashboardByLink())
         self.add_testpoint(FileDashboardUIFilterClickSearch())
         self.add_testpoint(CheckIfFileIngested(sale_and_settlement_molecule_correct_files.sale_file_name))
 
