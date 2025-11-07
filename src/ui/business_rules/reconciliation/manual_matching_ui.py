@@ -11,10 +11,257 @@ import logging
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 
+######################################################################################################################################
+######################################################################################################################################
+###############################                       ################################################################################
+###############################   Quick filters Sales #########################################################################
+###############################                       ################################################################################
+######################################################################################################################################
+######################################################################################################################################
+
+
+class ManualMatchingUIFilterSelectPNROrderREferenceToFilter(TestPoint):
+    def __init__(self ):   
+        def func(driver ):
+            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
+            time.sleep(1)
+           
+            try:
+                # Wait until input is visible and interactable
+                icon_ckeck_click = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-sales-list/div/div/div/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[1]/div[3]/p-radiobutton/div/div[2]"))
+                )
+                
+                # Clear any existing text before typing
+                icon_ckeck_click.click()
+               
+                logging.info(f"✅ PNR/Order Reference icon check clicked")
+                
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to click PNR/Order Reference icon")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f"click PNR/Order Reference icon in manual matching view"
+        tkt_id= f"*****"
+        tp_status=f"ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+class ManualMatchingSaleUIFilterPNROrderReference(TestPoint):
+    def __init__(self, pnr_order_reference ):   
+        def func(driver ):
+            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
+            time.sleep(1)
+            
+            try:
+                # Wait until input is visible and interactable
+                sale_id_input = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-sales-list/div/div/div/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[2]/div/input"))
+                )
+                
+                # Clear any existing text before typing
+                sale_id_input.clear()
+                sale_id_input.send_keys(pnr_order_reference)
+                logging.info(f"✅ PNR order reference'{pnr_order_reference}' entered successfully")
+                
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to enter PNR")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f"Filter PNR Order Reference"
+        tkt_id= f"*****"
+        tp_status=f"ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+
+
+
+
+
+
+
+
+class ManualMatchingUISaleClickSearchQuickFilters(TestPoint):
+    def __init__(self):   
+        def func(driver ):
+            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
+            try:
+                # Wait until the Search button is clickable
+                search_button = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, "div.p-0:nth-child(2) > div:nth-child(1) > adad-frontend-quick-search-standalone-filter:nth-child(1) > div:nth-child(1) > p-card:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > button:nth-child(2)"))
+                )
+
+                # Click the button
+                search_button.click()
+                logging.info("✅ 'Search' button clicked successfully")
+
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to click the 'Search' button")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP1415"
+        tp_description = f"click the sale 'Search' button in manual matching page"
+        tkt_id= f"*****"
+        tp_status=f"ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################################################################################
+######################################################################################################################################
+###############################                             #########################################################################
+###############################   Quick filters Settlements #########################################################################
+###############################                             #########################################################################
+######################################################################################################################################
+######################################################################################################################################
+
+
+class ManualMatchingUISettlementFilterSelectPNROrderReferenceToFilter(TestPoint):
+    def __init__(self ):   
+        def func(driver ):
+            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
+            time.sleep(1)
+           
+            try:
+                # Wait until input is visible and interactable
+                icon_ckeck_click = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-settlements-list/div/div/div/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[1]/div[3]/p-radiobutton/div/div[2]"))
+                )
+                
+                # Clear any existing text before typing
+                icon_ckeck_click.click()
+               
+                logging.info(f"✅ PNR/Order Reference icon check clicked")
+                
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to click PNR/Order Reference icon")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f"click PNR/Order Reference icon in manual matching view settlement"
+        tkt_id= f"*****"
+        tp_status=f"ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+class ManualMatchingSettlementUIFilterPNROrderReference(TestPoint):
+    def __init__(self, pnr_order_reference ):   
+        def func(driver ):
+            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
+            time.sleep(1)
+            
+            try:
+                # Wait until input is visible and interactable
+                sale_id_input = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-settlements-list/div/div/div/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[2]/div/input"))
+                )
+                
+                # Clear any existing text before typing
+                sale_id_input.clear()
+                sale_id_input.send_keys(pnr_order_reference)
+                logging.info(f"✅ PNR order reference'{pnr_order_reference}' entered successfully")
+                
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to enter PNR in settlement")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP"
+        tp_description = f"Filter PNR Order Reference settlement"
+        tkt_id= f"*****"
+        tp_status=f"ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+
+
+
+
+
+
+class ManualMatchingUISettlmeentClickSearchQuickFilters(TestPoint):
+    def __init__(self):   
+        def func(driver ):
+            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
+            try:
+                # Wait until the Search button is clickable
+                search_button = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, "adad-frontend-quick-search-standalone-filter.pl-0 > div:nth-child(1) > p-card:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > button:nth-child(2)"))
+                )
+
+                # Click the button
+                search_button.click()
+                logging.info("✅ 'Search' button clicked successfully")
+
+                time.sleep(2)
+
+            except Exception as e:
+                logging.exception("❌ Failed to click the 'Search' button")
+                raise AssertionError(e)
+
+        # Assign metadata separately
+        tp_id = "TP1415"
+        tp_description = f"click the settlement 'Search' button in manual matching page"
+        tkt_id= f"*****"
+        tp_status=f"ready"
+
+        # Pass metadata and function to base class
+        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
+
+
+
+
+
+
+
+
+
 
 class ManualMatchingUISaleFilterPaymentDateRange(TestPoint):
     def __init__(self, date ):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 date_input = WebDriverWait(driver, 10).until(
@@ -113,7 +360,7 @@ class ManualMatchingUISaleFilterChannelType(TestPoint):
 
 class ManualMatchingUISaleFilterCountry(TestPoint):
     def __init__(self, channel_type = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
 
@@ -132,39 +379,9 @@ class ManualMatchingUISaleFilterCountry(TestPoint):
         # Pass metadata and function to base class
         super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
 
-class ManualMatchingUISaleFilterPNR(TestPoint):
-    def __init__(self, pnr):   
-        def func(driver = webdriver):
-            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
-            try:
-                # Wait until input is visible and interactable
-                pnr_input = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-sales-list/div/div/div[5]/input"))
-                )
-                
-                # Clear any existing text before typing
-                pnr_input.clear()
-                pnr_input.send_keys(pnr)
-                logging.info(f"✅ PNR '{pnr}' entered successfully")
-                
-                time.sleep(2)
-
-            except Exception as e:
-                logging.exception("❌ Failed to enter PNR")
-                raise AssertionError(e)
-
-        # Assign metadata separately
-        tp_id = "TP1403"
-        tp_description = f"Filter pnr/order reference in pending sales within manual matching page"
-        tkt_id= f"*****"
-        tp_status=f"ready"
-
-        # Pass metadata and function to base class
-        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
-
 class ManualMatchingUISaleFilterDocumentNumber(TestPoint):
     def __init__(self, document_number):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try:
                 # Wait until the input is visible and clickable
@@ -198,7 +415,7 @@ class ManualMatchingUISaleFilterDocumentNumber(TestPoint):
 
 class ManualMatchingUISaleAddFilters(TestPoint):
     def __init__(self ):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -220,7 +437,7 @@ class ManualMatchingUISaleAddFilters(TestPoint):
 
 class ManualMatchingUISaleFilterSaleID(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -241,7 +458,7 @@ class ManualMatchingUISaleFilterSaleID(TestPoint):
 
 class ManualMatchingUISaleFilterFileID(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -262,7 +479,7 @@ class ManualMatchingUISaleFilterFileID(TestPoint):
 
 class ManualMatchingUISaleFilterFileFOPCode(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -283,7 +500,7 @@ class ManualMatchingUISaleFilterFileFOPCode(TestPoint):
 
 class ManualMatchingUISaleFilterFileFOPSubCode(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -304,7 +521,7 @@ class ManualMatchingUISaleFilterFileFOPSubCode(TestPoint):
 
 class ManualMatchingUISaleFilterPaymentID(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -325,7 +542,7 @@ class ManualMatchingUISaleFilterPaymentID(TestPoint):
 
 class ManualMatchingUISaleFilterPaymentCurrency(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -346,7 +563,7 @@ class ManualMatchingUISaleFilterPaymentCurrency(TestPoint):
 
 class ManualMatchingUISaleFilterCCBin(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -367,7 +584,7 @@ class ManualMatchingUISaleFilterCCBin(TestPoint):
 
 class ManualMatchingUISaleFilterCC4LastDigits(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -388,7 +605,7 @@ class ManualMatchingUISaleFilterCC4LastDigits(TestPoint):
 
 class ManualMatchingUISaleFilterApprovalCode(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -409,7 +626,7 @@ class ManualMatchingUISaleFilterApprovalCode(TestPoint):
 
 class ManualMatchingUISaleClickSearch(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try:
                 # Wait until the Search button is clickable
@@ -439,7 +656,7 @@ class ManualMatchingUISaleClickSearch(TestPoint):
 
 class ManualMatchingUISettlementFilterPaymentDateRange(TestPoint):
     def __init__(self, date ):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             date_input = driver.find_element(By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-settlements-list/div/div[1]/div/div[1]/adad-frontend-date-range/div/div/p-calendar/span/input").click()
             time.sleep(2)
@@ -461,7 +678,7 @@ class ManualMatchingUISettlementFilterPaymentDateRange(TestPoint):
 
 class ManualMatchingUISettlementFilterCustomerAcquirer(TestPoint):
     def __init__(self, customer):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 dropdown_trigger = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-settlements-list/div/div/div/div[2]/adad-frontend-acquirers-dropdown-filter/div/p-dropdown/div")))
@@ -489,7 +706,7 @@ class ManualMatchingUISettlementFilterCustomerAcquirer(TestPoint):
 
 class ManualMatchingUISettlementFilterCountry(TestPoint):
     def __init__(self, channel_type = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
 
@@ -507,29 +724,9 @@ class ManualMatchingUISettlementFilterCountry(TestPoint):
         # Pass metadata and function to base class
         super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
 
-class ManualMatchingUISettlementFilterPNR(TestPoint):
-    def __init__(self, pnr):   
-        def func(driver = webdriver):
-            assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
-            try : 
-                pnr_input = driver.find_element(By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-settlements-list/div/div/div/div[4]/input").send_keys(pnr)
-                time.sleep(2)
-
-            except Exception as e :
-                logging.exception(e)
-
-        # Assign metadata separately
-        tp_id = "TP1403"
-        tp_description = f"Filter pnr/order reference in pending Settlements within manual matching page"
-        tkt_id= f"*****"
-        tp_status=f"ready"
-
-        # Pass metadata and function to base class
-        super().__init__(id=tp_id, description=tp_description, func=func, ticket_id= tkt_id , status = tp_status, execution= "failed")  
-
 class ManualMatchingUISettlementFilterDocumentNumber(TestPoint):
     def __init__(self, document_number ):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 document_number_input = driver.find_element(By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-manual-matching/div/div/adad-frontend-manual-matching-of-sales-and-settlements/div/adad-frontend-settlements-list/div/div/div/div[5]/input").send_keys(document_number)
@@ -549,7 +746,7 @@ class ManualMatchingUISettlementFilterDocumentNumber(TestPoint):
 
 class ManualMatchingUISettlementAddFilters(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -571,7 +768,7 @@ class ManualMatchingUISettlementAddFilters(TestPoint):
 
 class ManualMatchingUISettlementFilterSettlementID(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -593,7 +790,7 @@ class ManualMatchingUISettlementFilterSettlementID(TestPoint):
 
 class ManualMatchingUISettlementFilterFileID(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -614,7 +811,7 @@ class ManualMatchingUISettlementFilterFileID(TestPoint):
 
 class ManualMatchingUISettlementFilterFileFOPCode(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -635,7 +832,7 @@ class ManualMatchingUISettlementFilterFileFOPCode(TestPoint):
 
 class ManualMatchingUISettlementFilterFileFOPSubCode(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -656,7 +853,7 @@ class ManualMatchingUISettlementFilterFileFOPSubCode(TestPoint):
 
 class ManualMatchingUISettlementFilterPaymentID(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -677,7 +874,7 @@ class ManualMatchingUISettlementFilterPaymentID(TestPoint):
 
 class ManualMatchingUISettlementFilterPaymentCurrency(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -698,7 +895,7 @@ class ManualMatchingUISettlementFilterPaymentCurrency(TestPoint):
 
 class ManualMatchingUISettlementFilterCCBin(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -720,7 +917,7 @@ class ManualMatchingUISettlementFilterCCBin(TestPoint):
 
 class ManualMatchingUISettlementFilterCC4LastDigits(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -742,7 +939,7 @@ class ManualMatchingUISettlementFilterCC4LastDigits(TestPoint):
 
 class ManualMatchingUISettlementFilterApprovalCode(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 
@@ -764,7 +961,7 @@ class ManualMatchingUISettlementFilterApprovalCode(TestPoint):
 
 class ManualMatchingUISettlementClickSearch(TestPoint):
     def __init__(self, document_number = str):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 # Wait until the Search button is clickable
@@ -795,7 +992,7 @@ class ManualMatchingUISettlementClickSearch(TestPoint):
 
 class ManualMatchingUISaleClickCheckBox(TestPoint):
     def __init__(self,):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 # Wait until the Search button is clickable
@@ -824,7 +1021,7 @@ class ManualMatchingUISaleClickCheckBox(TestPoint):
 
 class ManualMatchingUISettlementClickCheckBox(TestPoint):
     def __init__(self,):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 # Wait until the Search button is clickable
@@ -853,7 +1050,7 @@ class ManualMatchingUISettlementClickCheckBox(TestPoint):
 
 class ManualMatchingUIConfirmMatching(TestPoint):
     def __init__(self,):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 # Wait until the Search button is clickable
@@ -883,7 +1080,7 @@ class ManualMatchingUIConfirmMatching(TestPoint):
 
 class ManualMatchingUIMatchSaleAndSettlement(TestPoint):
     def __init__(self,):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 # Wait until the Search button is clickable
@@ -912,7 +1109,7 @@ class ManualMatchingUIMatchSaleAndSettlement(TestPoint):
 
 class ManualMatchingUIMatchSaleAndSettlementClickYes(TestPoint):
     def __init__(self,):   
-        def func(driver = webdriver):
+        def func(driver ):
             assert "/manual-matching" in driver.current_url, "❌ Not on manual matching page"
             try : 
                 # Wait until the Search button is clickable
