@@ -647,7 +647,7 @@ class SaleUIFilterFileID(TestPoint):
             try:
                 # Wait until input is visible and interactable
                 sale_id_input = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[1]/adad-frontend-quick-search-standalone-filter/div/p-card/div/div[2]/div/div/div[2]/div/input"))
+                    EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[4]/input"))
                 )
                 
                 # Clear any existing text before typing
@@ -700,7 +700,7 @@ class SaleUIFilterFOPCode(TestPoint):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
             try :
                 channel_type_input = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[2]/adad-frontend-sale-sources-dropdown-filter/div/p-dropdown/div/span"))
+        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div[2]/div[1]/adad-frontend-form-of-payments-filter/div/p-dropdown/div/span"))
     )
                 channel_type_input.click()
                 logging.info("✅ channel type clicked")
@@ -747,43 +747,47 @@ class SaleUIFilterFOPCode(TestPoint):
 class SaleUIFilterFOPSubCode(TestPoint):
     def __init__(self, fop_code ):   
         def func(driver ):
-            assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
-            try :
-                channel_type_input = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[2]/adad-frontend-sale-sources-dropdown-filter/div/p-dropdown/div/span"))
-    )
-                channel_type_input.click()
-                logging.info("✅ channel type clicked")
 
+            if fop_code :
+                assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
+                try :
+                    channel_type_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div[2]/div[2]/adad-frontend-alternative-method-of-payments-filter/div/p-dropdown/div"))
+        )
+                    channel_type_input.click()
+                    logging.info("✅ FOP sub code clicked")
+
+                    time.sleep(2)
+                except Exception as e: 
+                    logging.exception("❌ Failed to click select channel type")
+                    pytest.fail("❌ Failed to click select channel type")
+
+                    raise AssertionError(e)
+                # Wait for clear button and click it
+                
+                try:
+                    option = WebDriverWait(driver, 10).until(
+                            EC.element_to_be_clickable((By.XPATH, f"//li[@role='option'][normalize-space()='{fop_code}']"))
+                        )
+                    option.click()
+                    logging.info(f"✅ Option '{fop_code}' selected")
+                except Exception as e: 
+                    logging.exception("❌ channel type doesn't exist")
+                    pytest.fail("❌ channel type doesn't exist")
+
+                try :
+
+                    selected_label = WebDriverWait(driver, 10).until(
+                            EC.visibility_of_element_located((By.CSS_SELECTOR, "p-dropdown.p-element"))
+                        )
+                    logging.info(f"🎯 Dropdown now shows: '{selected_label.text}'")
+
+                except Exception as e :
+                    logging.error(e)
                 time.sleep(2)
-            except Exception as e: 
-                logging.exception("❌ Failed to click select channel type")
-                pytest.fail("❌ Failed to click select channel type")
-
-                raise AssertionError(e)
-            # Wait for clear button and click it
-            
-            try:
-                option = WebDriverWait(driver, 10).until(
-                        EC.element_to_be_clickable((By.XPATH, f"//li[@role='option'][normalize-space()='{fop_code}']"))
-                    )
-                option.click()
-                logging.info(f"✅ Option '{fop_code}' selected")
-            except Exception as e: 
-                logging.exception("❌ channel type doesn't exist")
-                pytest.fail("❌ channel type doesn't exist")
-
-            try :
-
-                selected_label = WebDriverWait(driver, 10).until(
-                        EC.visibility_of_element_located((By.CSS_SELECTOR, "p-dropdown.p-element"))
-                    )
-                logging.info(f"🎯 Dropdown now shows: '{selected_label.text}'")
-
-            except Exception as e :
-                logging.error(e)
-            time.sleep(2)
-           
+            else :
+                logging.info("✅ No FOP sub code existing")
+                
 
         # Assign metadata separately
         tp_id = "TP"
@@ -797,43 +801,46 @@ class SaleUIFilterFOPSubCode(TestPoint):
 class SaleUIFilterSettledStatus(TestPoint):
     def __init__(self, fop_code ):   
         def func(driver ):
-            assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
-            try :
-                channel_type_input = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div/div[2]/adad-frontend-sale-sources-dropdown-filter/div/p-dropdown/div/span"))
-    )
-                channel_type_input.click()
-                logging.info("✅ channel type clicked")
 
+            if fop_code:
+                assert "/audit-track/sale" in driver.current_url, "❌ Not on audit-track/sale page"
+                try :
+                    channel_type_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/adad-frontend-layout/div/adad-frontend-toolbar/div/div/div/div/adad-frontend-sale-audit-track-view/adad-frontend-sales-audit-track/div/adad-frontend-sales-audit-track-filters/div/div[2]/p-card/div/div[2]/div/div[2]/div[3]/adad-frontend-audit-track-settled-status-dropdown/div/p-dropdown/div"))
+        )
+                    channel_type_input.click()
+                    logging.info("✅ channel type clicked")
+
+                    time.sleep(2)
+                except Exception as e: 
+                    logging.exception("❌ Failed to click select channel type")
+                    pytest.fail("❌ Failed to click select channel type")
+
+                    raise AssertionError(e)
+                # Wait for clear button and click it
+                
+                try:
+                    option = WebDriverWait(driver, 10).until(
+                            EC.element_to_be_clickable((By.XPATH, f"//li[@role='option'][normalize-space()='{fop_code}']"))
+                        )
+                    option.click()
+                    logging.info(f"✅ Option '{fop_code}' selected")
+                except Exception as e: 
+                    logging.exception("❌ channel type doesn't exist")
+                    pytest.fail("❌ channel type doesn't exist")
+
+                try :
+
+                    selected_label = WebDriverWait(driver, 10).until(
+                            EC.visibility_of_element_located((By.CSS_SELECTOR, "p-dropdown.p-element"))
+                        )
+                    logging.info(f"🎯 Dropdown now shows: '{selected_label.text}'")
+
+                except Exception as e :
+                    logging.error(e)
                 time.sleep(2)
-            except Exception as e: 
-                logging.exception("❌ Failed to click select channel type")
-                pytest.fail("❌ Failed to click select channel type")
-
-                raise AssertionError(e)
-            # Wait for clear button and click it
-            
-            try:
-                option = WebDriverWait(driver, 10).until(
-                        EC.element_to_be_clickable((By.XPATH, f"//li[@role='option'][normalize-space()='{fop_code}']"))
-                    )
-                option.click()
-                logging.info(f"✅ Option '{fop_code}' selected")
-            except Exception as e: 
-                logging.exception("❌ channel type doesn't exist")
-                pytest.fail("❌ channel type doesn't exist")
-
-            try :
-
-                selected_label = WebDriverWait(driver, 10).until(
-                        EC.visibility_of_element_located((By.CSS_SELECTOR, "p-dropdown.p-element"))
-                    )
-                logging.info(f"🎯 Dropdown now shows: '{selected_label.text}'")
-
-            except Exception as e :
-                logging.error(e)
-            time.sleep(2)
-           
+            else :
+                logging.info("No status")
 
         # Assign metadata separately
         tp_id = "TP"
@@ -867,7 +874,7 @@ class SaleUIClickSearch(TestPoint):
             assert "/audit-track/sale" in driver.current_url, "❌ Not on audit track sale page"
             try :
                 time.sleep(1)
-                filters = driver.find_element(By.CSS_SELECTOR, ".p-button-primary > span:nth-child(1)").click()
+                filters = driver.find_element(By.CSS_SELECTOR, "div.col-12:nth-child(5) > div:nth-child(2)").click()
                 time.sleep(1)
                 logging.info("✅Successfully clicked the search button")
 
